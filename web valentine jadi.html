@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untukmu, Azizah 💌</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f9e1e4;
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        color: #601e2b;
+        padding: 16px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255, 245, 247, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 30px 20px 40px;
+        border-radius: 48px;
+        box-shadow: 0 25px 40px rgba(120, 0, 30, 0.15);
+        text-align: center;
+        border: 2px solid #ffb7c5;
+        animation: fadeIn 0.8s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .message-box {
+        background: #fff2f4;
+        border-radius: 40px;
+        padding: 30px 20px;
+        margin: 15px 0 25px;
+        box-shadow:
+          inset 0 2px 8px #ffe0e5,
+          0 10px 20px rgba(140, 0, 30, 0.1);
+        border: 1px solid #ffa5b7;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .text {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #681e2c;
+        white-space: pre-line;
+        word-break: break-word;
+        text-shadow: 0 1px 2px white;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .slide-image {
+        max-width: 100%;
+        max-height: 180px;
+        border-radius: 25px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
+        border: 3px solid white;
+      }
+
+      button {
+        background: #a00028;
+        color: white;
+        border: none;
+        padding: 16px 35px;
+        border-radius: 60px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        cursor: pointer;
+        box-shadow:
+          0 8px 0 #4f0013,
+          0 12px 25px #d87a8b;
+        transition: 0.1s linear;
+        margin-top: 15px;
+        min-width: 180px;
+      }
+
+      button:active {
+        transform: translateY(7px);
+        box-shadow:
+          0 1px 0 #4f0013,
+          0 12px 25px #d87a8b;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        transform: none;
+        box-shadow:
+          0 4px 0 #4f0013,
+          0 8px 15px #d87a8b;
+        pointer-events: none;
+      }
+
+      .music-control {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .music-btn {
+        background: #ffb3c1;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 18px;
+        font-size: 1rem;
+        color: #4d1420;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: 0.2s;
+      }
+
+      .music-btn:hover {
+        background: #ffa0b2;
+      }
+
+      .music-status {
+        font-size: 0.8rem;
+        color: #b03e54;
+        width: 100%;
+        text-align: center;
+        font-style: italic;
+        margin-top: 5px;
+      }
+
+      .heart-deco {
+        font-size: 2rem;
+        margin-top: 15px;
+        opacity: 0.5;
+      }
+
+      .footer {
+        font-size: 0.8rem;
+        color: #b1485a;
+        margin-top: 15px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div style="font-size: 2rem; margin-bottom: 5px">💌</div>
+      <h2 style="color: #7a1f31">Pesan untukmu</h2>
+
+      <div class="message-box" id="messageBox">
+        <div class="text" id="text"></div>
+        <img
+          id="slideImage"
+          class="slide-image"
+          src=""
+          alt=""
+          style="display: none"
+        />
+      </div>
+
+      <button id="btn">tap <3</button>
+
+      <!-- Kontrol musik -->
+      <div class="music-control">
+        <button class="music-btn" id="playMusic">🎵 Putar Musik</button>
+        <button class="music-btn" id="pauseMusic">⏸ Jeda</button>
+        <div class="music-status" id="musicStatus">
+          🎵 Klik putar untuk mulai musik
+        </div>
+      </div>
+
+      <div class="heart-deco">❤️❤️❤️</div>
+      <div class="footer" id="slideCounter">1 / 8</div>
+    </div>
+
+    <script>
+      // ==================== DATA SLIDE ====================
+      const slides = [
+        {
+          text: `happy valentinnn dayy sayangg!!\nthere's more waiting... click bawah yaw ✨✨`,
+          image: "",
+        },
+        {
+          text: `terima kasih selalu hadir buat apiq,selalu ada buat apiq, dan selalu menyayangi apiq dengan sepenuh hati\napiq bersyukur banget punya jajah di hidup apiq`,
+          image: "",
+        },
+        {
+          text: `setiap apiq liat jajah, apiq selalu jatuh cinta lagi lagi dan lagi\n<3`,
+          image: "",
+        },
+        {
+          text: `aku nulis ini lama baca yang baik ya maaf kalau kata katanya aneh \nokayy <3\n`,
+          image: "",
+        },
+        {
+          text: `semanis madu dan semanis gula, penuhi hari-hari dengan cinta.\nSelamat hari kasih sayang untuk jajah yang apiqq cintaaa (❤️)`,
+          image: "",
+        },
+        {
+          text: `Aku selalu ingin bersama kamu ya walau di skat ldr keras,tapi bayyik eh apiq yakin kita bisa lewatin ini semuaa\naku sayang jajahh `,
+          image: "",
+        },
+        {
+          text: `ALL YOU NEED IS LOVE\ntahun ini jadi tahun pertama kita ngerayain valentine secara LDR.\ncape nya LDR tapi apiq yakin terbayar lah dengan semua cinta dan perhatian yang jajah kasih ke apiq\naku sayang jajah eh cintaaaa bangetttt\nsemoga kita selalu bareng yaw dan bahagia  sayangg <3`,
+          image: "",
+        },
+        {
+          text: `akhir kata dari bayyik maksud nya apiq\n apiq selalu bersukur punya jajah di hidup apiq\nsemoga kita selalu bersama sampai tua nanti ya sayang\n apiq harap walau kita di landa badai yang besar kita tetap bisa kokoh berdiri dengan tegak bersama\n apiq cintaa jajahh ❤️❤️\n\n`,
+          // GANTI URL INI DENGAN FOTO KENANGAN ANDA (bisa pakai path relatif atau URL online)
+          image: "d:\\project\\daspro\\valentine web jadi\\web valentine.jpeg", // contoh foto online, ganti sesuai keinginan
+        },
+      ];
+
+      // ==================== VARIABEL GLOBAL ====================
+      let currentSlide = 0;
+      let typingTimer = null;
+      let isTyping = false;
+      const textEl = document.getElementById("text");
+      const btn = document.getElementById("btn");
+      const slideImage = document.getElementById("slideImage");
+      const counterEl = document.getElementById("slideCounter");
+      const musicStatus = document.getElementById("musicStatus");
+
+      // ==================== FUNGSI TYPEWRITER ====================
+      function typeWriter(text, index = 0) {
+        if (index < text.length) {
+          textEl.innerHTML += text.charAt(index);
+          typingTimer = setTimeout(() => typeWriter(text, index + 1), 30);
+          isTyping = true;
+        } else {
+          isTyping = false;
+          if (currentSlide < slides.length - 1) {
+            btn.disabled = false;
+          } else {
+            btn.disabled = true;
+          }
+        }
+      }
+
+      // ==================== FUNGSI MENAMPILKAN SLIDE ====================
+      function showSlide() {
+        if (typingTimer) {
+          clearTimeout(typingTimer);
+          typingTimer = null;
+        }
+        isTyping = false;
+
+        textEl.innerHTML = "";
+        slideImage.style.display = "none";
+        slideImage.src = "";
+
+        const slide = slides[currentSlide];
+        typeWriter(slide.text);
+
+        if (slide.image && slide.image.trim() !== "") {
+          slideImage.src = slide.image;
+          slideImage.style.display = "block";
+        }
+
+        counterEl.innerText = currentSlide + 1 + " / " + slides.length;
+
+        if (currentSlide === slides.length - 1) {
+          btn.disabled = true;
+          btn.innerText = "❤️ selesai";
+        } else {
+          btn.disabled = true;
+          btn.innerText = "tap <3";
+        }
+      }
+
+      // ==================== EVENT KLIK TOMBOL ====================
+      btn.addEventListener("click", () => {
+        if (isTyping || currentSlide >= slides.length - 1) return;
+        currentSlide++;
+        showSlide();
+      });
+
+      // ==================== MUSIK LATAR ====================
+      // GANTI DENGAN URL MUSIK ANDA (bisa MP3 online)
+      const audio = new Audio(
+        "D:\\project\\daspro\\valentine web jadi\\Taylor_Swift_-_Love_Story_Taylor_s_Version_Lirik_Terjemahan_48kbps.mp3",
+      ); // contoh musik
+      audio.loop = true;
+
+      const playBtn = document.getElementById("playMusic");
+      const pauseBtn = document.getElementById("pauseMusic");
+
+      playBtn.addEventListener("click", () => {
+        audio
+          .play()
+          .then(() => {
+            musicStatus.innerText = "🎵 Musik sedang diputar";
+          })
+          .catch((e) => {
+            musicStatus.innerText =
+              "❌ Gagal memutar musik. Klik lagi atau cek koneksi.";
+          });
+      });
+
+      pauseBtn.addEventListener("click", () => {
+        audio.pause();
+        musicStatus.innerText = "⏸ Musik dijeda";
+      });
+
+      // ==================== INISIALISASI ====================
+      showSlide();
+    </script>
+  </body>
+</html>
